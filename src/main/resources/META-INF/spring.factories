@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.mamezoutech.springbatch.XRayConfiguration,\
+com.mamezoutech.springbatch.XRayRecorderJobListenerConfiguration

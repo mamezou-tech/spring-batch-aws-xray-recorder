@@ -22,7 +22,10 @@ public class XRayRecorderJobListener implements JobExecutionListener {
 
     @Override
     public void beforeJob(JobExecution jobExecution) {
-        String name = jobExecution.getJobId().toString();
+        String name = jobExecution.getJobParameters().getString("Host");
+        if (name == null || name.equals("")) {
+            name = "localhost";
+        }
         String traceId = jobExecution.getJobParameters().getString("X-Amzn-Trace-Id");
         Optional<TraceHeader> maybeTraceHeader = traceId == null ? Optional.empty() : Optional.of(TraceHeader.fromString(traceId));
         if (logger.isDebugEnabled() && maybeTraceHeader.isPresent()) {
